@@ -1,22 +1,10 @@
-.image1{
+.main-banner-image{
     height:40em; 
     background-size:cover;
     width:auto;
-    background-image:url('/assets/img/categories/category-1.jpg');
+    background-image: url("/assets/img/categories/category-1.jpg");
     background-position:50% 50%;
   }
-  .image2{
-    background-image:url('/assets/img/categories/category-2.jpg');
-  }
-  .image3{
-    background-image:url('/assets/img/categories/category-3.jpg');
-    background-position:50% 50%;
-  }
-  .image4{
-    background-image:url('/assets/img/categories/category-4.jpg');
-    background-position:50% 50%;
-  }
-  .image5{
-    background-image:url('/assets/img/categories/category-5.jpg');
+  .sub-banner-image{
     background-position:50% 50%;
   }

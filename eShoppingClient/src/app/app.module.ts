@@ -3,7 +3,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppComponent } from "./app.component";
-import { appRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
@@ -12,6 +11,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { fakeBackendProvider } from "./helpers/fake-backend";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { fakeBackendProvider } from "./helpers/fake-backend";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    appRoutingModule,
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
