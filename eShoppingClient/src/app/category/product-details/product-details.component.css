@@ -1,0 +1,9 @@
+.product__image__display{
+    height:40em; 
+    background-size:cover;
+    width:auto;
+    background-position:50% 50%;
+  }
+  .sub-banner-image{
+    background-position:50% 50%;
+  }

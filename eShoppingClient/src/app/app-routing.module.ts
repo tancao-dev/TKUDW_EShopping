@@ -22,6 +22,11 @@ const routes: Routes = [
       import("./general/general.module").then((m) => m.GeneralModule),
   },
   {
+    path: "category",
+    loadChildren: () =>
+      import("./category/category.module").then((m) => m.CategoryModule),
+  },
+  {
     path: "admin",
     component: AdminComponent,
     canActivate: [AuthGuard],
