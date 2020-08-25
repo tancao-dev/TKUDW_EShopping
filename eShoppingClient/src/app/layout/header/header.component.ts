@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {}
 
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
-  }
+  // get isAdmin() {
+  //   return this.currentUser && this.currentUser.role === Role.Admin;
+  // }
 
   logout() {
     this.authenticationService.logout();

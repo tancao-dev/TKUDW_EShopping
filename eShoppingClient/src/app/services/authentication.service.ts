@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user";
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private ms: ToastrService) {
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );
@@ -22,21 +23,26 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
+    let body = {
+      tendangnhap: username,
+      matkhau: password
+    }
     return this.http
-      .post<any>(`${environment.apiUrl}/users/authenticate`, {
-        username,
-        password,
-      })
+      .post<any>(`${environment.apiUrl}/user/login`, body)
       .pipe(
-        map((user) => {
+        map((res) => {
           // login successful if there's a jwt token in the response
-          if (user && user.token) {
+          if (res.success) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem("currentUser", JSON.stringify(user));
-            this.currentUserSubject.next(user);
+            localStorage.setItem("currentUser", JSON.stringify(res.data));
+            this.currentUserSubject.next(res.data);
+          } else {
+            console.log(res.data);
+            this.ms.error(res.data);
+            return;
           }
 
-          return user;
+          return res.data;
         })
       );
   }

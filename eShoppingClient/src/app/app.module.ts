@@ -5,14 +5,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
-import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
 import { AdminComponent } from "./admin/admin.component";
 import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
-import { fakeBackendProvider } from "./helpers/fake-backend";
-import { AppRoutingModule } from './app-routing.module';
-
+import { AppRoutingModule } from "./app-routing.module";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   imports: [
     BrowserModule,
@@ -20,6 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   declarations: [
     AppComponent,
@@ -30,10 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     FooterComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // provider used to create fake backend
-    fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
 })

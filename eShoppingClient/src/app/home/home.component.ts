@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import { UserService } from "../services/user.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { first } from "rxjs/operators";
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: "app-home",
@@ -12,10 +13,10 @@ import { first } from "rxjs/operators";
 export class HomeComponent implements OnInit {
   loading = false;
   currentUser: User;
-  userFromApi: User;
+  categoryList = [];
 
   constructor(
-    private userService: UserService,
+    private generalService: GeneralService,
     private authenticationService: AuthenticationService
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
@@ -23,12 +24,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.userService
-      .getById(this.currentUser.id)
-      .pipe(first())
-      .subscribe((user) => {
-        this.loading = false;
-        this.userFromApi = user;
-      });
+    this.generalService.getAllCategory().subscribe(res => {
+      if (res) {
+        this.categoryList = res;
+      } 
+    })
   }
 }
