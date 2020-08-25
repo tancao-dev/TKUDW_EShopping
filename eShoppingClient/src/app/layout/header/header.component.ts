@@ -3,6 +3,7 @@ import { User } from "src/app/models/user";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { Role } from "src/app/models/role";
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: "app-header",
@@ -12,10 +13,12 @@ import { Role } from "src/app/models/role";
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   currentUser: User;
+  categoryList = [];
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private generalService: GeneralService
   ) {
     this.authenticationService.currentUser.subscribe((x) => {
       if (x) {
@@ -27,11 +30,26 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.generalService.getAllCategory().subscribe(res => {
+      if (res) {
+        this.categoryList = res;
+      } 
+    })
+  }
 
   // get isAdmin() {
   //   return this.currentUser && this.currentUser.role === Role.Admin;
   // }
+
+  setId(id) {
+    this.generalService.setId(id);
+  }
+
+  goToCategory(id) {
+    this.setId(id);
+    this.router.navigate(["/category/accessories"]);
+  }
 
   logout() {
     this.authenticationService.logout();

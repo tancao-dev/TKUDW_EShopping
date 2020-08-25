@@ -26,10 +26,9 @@
             <div class="categories__text">
               <h2><b>{{categoryList[0].ten}}</b></h2>
               <p>
-                Sitamet, consectetur adipiscing elit, sed do eiusmod tempor
-                incidid-unt labore edolore magna aliquapendisse ultrices gravida.
+                {{categoryList[0].mota}}
               </p>
-              <a routerLink="/category/women">Shop now</a>
+              <a routerLink="/category/women" (click)="setId(categoryList[0].id)">Mua thôi ...</a>
             </div>
           </div>
         </div>
@@ -43,7 +42,7 @@
                 <div class="categories__text">
                   <h4>{{categoryList[1].ten}}</h4>
                   <p>358 items</p>
-                  <a routerLink="/category/men">Shop now</a>
+                  <a routerLink="/category/men" (click)="setId(categoryList[1].id)">Mua thôi ...</a>
                 </div>
               </div>
             </div>
@@ -55,7 +54,7 @@
                 <div class="categories__text">
                   <h4>{{categoryList[2].ten}}</h4>
                   <p>273 items</p>
-                  <a routerLink="/category/kid">Shop now</a>
+                  <a routerLink="/category/kid" (click)="setId(categoryList[2].id)">Mua thôi ...</a>
                 </div>
               </div>
             </div>
@@ -67,7 +66,7 @@
                 <div class="categories__text">
                   <h4>{{categoryList[3].ten}}</h4>
                   <p>159 items</p>
-                  <a routerLink="/category/cosmetic">Shop now</a>
+                  <a routerLink="/category/cosmetic" (click)="setId(categoryList[3].id)">Mua thôi ...</a>
                 </div>
               </div>
             </div>
@@ -79,7 +78,7 @@
                 <div class="categories__text">
                   <h4>{{categoryList[4].ten}}</h4>
                   <p>792 items</p>
-                  <a routerLink="/category/accessories">Shop now</a>
+                  <a routerLink="/category/accessories" (click)="setId(categoryList[4].id)">Mua thôi ...</a>
                 </div>
               </div>
             </div>
@@ -126,7 +125,7 @@
               <p>Sec</p>
             </div>
           </div>
-          <a href="#">Shop now</a>
+          <a href="#">Mua thôi ...</a>
         </div>
       </div>
     </div>
@@ -141,29 +140,29 @@
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="services__item">
           <i class="fa fa-car"></i>
-          <h6>Free Shipping</h6>
-          <p>For all oder over $99</p>
+          <h6>Miễn phí vận chuyển</h6>
+          <p>Cho mọi đơn trên 200.000</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="services__item">
           <i class="fa fa-money"></i>
-          <h6>Money Back Guarantee</h6>
-          <p>If good have Problems</p>
+          <h6>Hoàn tiền</h6>
+          <p>Nếu sản phẩm lỗi</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="services__item">
           <i class="fa fa-support"></i>
-          <h6>Online Support 24/7</h6>
-          <p>Dedicated support</p>
+          <h6>Hỗ trợ 24/7</h6>
+          <p>Tận tình, thân thiện, nhanh chóng</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="services__item">
           <i class="fa fa-headphones"></i>
-          <h6>Payment Secure</h6>
-          <p>100% secure payment</p>
+          <h6>Bảo mật thanh toán</h6>
+          <p>100% bảo mật</p>
         </div>
       </div>
     </div>

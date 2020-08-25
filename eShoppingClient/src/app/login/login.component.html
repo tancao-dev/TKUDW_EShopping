@@ -1,48 +1,52 @@
-
-  <div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info">
-      <strong>User</strong> - U: levannam P: nam12345<br />
-      <strong>Administrator</strong> - U: caominhtan P: tan12345
-    </div>
-    <div class="card">
-      <h4 class="card-header">E-Shopping</h4>
-      <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="tendangnhap">Username</label>
-            <input
-              type="text"
-              formControlName="tendangnhap"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.tendangnhap.errors }"
-            />
-            <div *ngIf="submitted && f.tendangnhap.errors" class="invalid-feedback">
-              <div *ngIf="f.tendangnhap.errors.required">Username is required</div>
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="alert alert-info">
+    <strong>Khách hàng</strong> - U: levannam P: nam12345<br />
+    <strong>Admin</strong> - U: caominhtan P: tan12345
+  </div>
+  <div class="card">
+    <h4 class="card-header">E-Shopping</h4>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="tendangnhap">Tên đăng nhập</label>
+          <input
+            type="text"
+            formControlName="tendangnhap"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.tendangnhap.errors }"
+          />
+          <div
+            *ngIf="submitted && f.tendangnhap.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.tendangnhap.errors.required">
+              Tên đăng nhập là trường bắt buộc
             </div>
           </div>
-          <div class="form-group">
-            <label for="matkhau">Password</label>
-            <input
-              type="password"
-              formControlName="matkhau"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.matkhau.errors }"
-            />
-            <div *ngIf="submitted && f.matkhau.errors" class="invalid-feedback">
-              <div *ngIf="f.matkhau.errors.required">Password is required</div>
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="matkhau">Mật khẩu</label>
+          <input
+            type="password"
+            formControlName="matkhau"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.matkhau.errors }"
+          />
+          <div *ngIf="submitted && f.matkhau.errors" class="invalid-feedback">
+            <div *ngIf="f.matkhau.errors.required">Mật khẩu là trường bắt buộc</div>
           </div>
-          <button [disabled]="loading" class="btn btn-primary">
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
-            Login
-          </button>
-          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+        </div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Đăng nhập
+        </button>
+        <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
             {{ error }}
-          </div>
-        </form>
-      </div>
+          </div> -->
+      </form>
     </div>
   </div>
+</div>

@@ -20,11 +20,13 @@ const routes: Routes = [
     path: "general",
     loadChildren: () =>
       import("./general/general.module").then((m) => m.GeneralModule),
+    canActivate: [AuthGuard],
   },
   {
     path: "category",
     loadChildren: () =>
       import("./category/category.module").then((m) => m.CategoryModule),
+      canActivate: [AuthGuard],
   },
   {
     path: "admin",

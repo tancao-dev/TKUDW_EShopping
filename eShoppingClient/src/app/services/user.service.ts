@@ -23,6 +23,11 @@ export class UserService {
         return this.http.post<any>(`${this.url}/checkout`,body);
     }
 
+    postAddRecipient(body) {
+        body.idtaikhoan = this.user.id;
+        return this.http.post<any>(`${this.url}/checkout`,body);
+    }
+
     // getById(id: number) {
     //     return this.http.get<any>(`${environment.apiUrl}/users/${id}`);
     // }

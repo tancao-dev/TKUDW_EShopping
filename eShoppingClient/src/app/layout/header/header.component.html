@@ -49,37 +49,19 @@
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                <a routerLink="">Home</a>
+                <a routerLink="">Trang chủ</a>
               </li>
               <li
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                <a routerLink="/category/women">Women’s</a>
+                <a routerLink="/general/cart">Giỏ hàng</a>
               </li>
               <li
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                <a routerLink="/category/men">Men’s</a>
-              </li>
-              <li
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-                <a routerLink="/category/kid">Kid's</a>
-              </li>
-              <li
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-                <a routerLink="/category/cosmetics">Cosmetics</a>
-              </li>
-              <li
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-                <a routerLink="/category/accessories">Accessories</a>
+                <a routerLink="/general/checkout">Thanh toán</a>
               </li>
               <!-- <li
                 routerLinkActive="active"
@@ -88,12 +70,13 @@
                 <a routerLink="/general">Contact</a>
               </li> -->
               <!-- <li>
-                <a href="javascript:void(0);">Shop</a>
+                <a href="javascript:void(0);">Sản phẩm</a>
                 <ul class="dropdown">
-                  <li><a href="./product-details.html">Product Details</a></li>
-                  <li><a href="./shop-cart.html">Shop Cart</a></li>
-                  <li><a href="./checkout.html">Checkout</a></li>
-                  <li><a href="./blog-details.html">Blog Details</a></li>
+                  <li><a routerLink="/category/women">{{ categoryList[0].ten }}</a></li>
+                  <li><a routerLink="/category/men">{{ categoryList[1].ten }}</a></li>
+                  <li><a routerLink="/category/kid">{{ categoryList[2].ten }}</a></li>
+                  <li><a routerLink="/category/cosmetic">{{ categoryList[3].ten }}</a></li>
+                  <li><a routerLink="/category/accessories">{{ categoryList[4].ten }}</a></li>
                 </ul>
               </li> -->
             </ul>
@@ -102,8 +85,8 @@
         <div class="col-lg-3">
           <div class="header__right">
             <div class="header__right__auth">
-              <a (click)="logout()" *ngIf="!isLoggedIn">Login</a>
-              <a (click)="logout()">Logout</a>
+              <a (click)="logout()" *ngIf="!isLoggedIn">Đăng nhập</a>
+              <a (click)="logout()">Đăng xuất</a>
             </div>
             <ul class="header__right__widget">
               <!-- <li><span class="icon_search search-switch"></span></li> -->

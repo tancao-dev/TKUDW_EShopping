@@ -12,6 +12,7 @@ import { FooterComponent } from "./layout/footer/footer.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
 @NgModule({
   imports: [
     BrowserModule,
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppRoutingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    RouterModule,
   ],
   declarations: [
     AppComponent,

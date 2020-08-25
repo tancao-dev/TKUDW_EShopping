@@ -30,4 +30,8 @@ export class HomeComponent implements OnInit {
       } 
     })
   }
+
+  setId(id) {
+    this.generalService.setId(id);
+  }
 }

@@ -7,3 +7,8 @@
   .sub-banner-image{
     background-position:50% 50%;
   }
+
+  .img-product {
+    width: auto;
+    height: 40em;
+  }
