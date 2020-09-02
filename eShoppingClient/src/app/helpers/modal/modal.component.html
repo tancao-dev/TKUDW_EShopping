@@ -1,0 +1,102 @@
+<h1 mat-dialog-title>Chào bạn,</h1>
+<div mat-dialog-content>
+  <p>Vui lòng điền đủ các thông tin dưới đây</p>
+
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>Tên đăng nhập</mat-label>
+      <input
+        matInput
+        placeholder="Tên đăng nhập"
+        [(ngModel)]="data.tendangnhap"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>Mật khẩu</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Mật khẩu"
+        [(ngModel)]="data.matkhau"
+        required
+        autocomplete="new-password"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>Họ tên</mat-label>
+      <input
+        matInput
+        placeholder="Họ tên"
+        [(ngModel)]="data.hoten"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </p>
+  <mat-form-field appearance="legacy" [style.width.px]="300">
+    <mat-label>Ngày sinh</mat-label>
+    <input
+      required
+      placeholder="Ngày sinh"
+      [(ngModel)]="data.ngaysinh"
+      autocomplete="off"
+      matInput
+      [matDatepicker]="picker"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>CMND</mat-label>
+      <input
+        matInput
+        placeholder="CMND"
+        [(ngModel)]="data.CMND"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>Địa chỉ</mat-label>
+      <input
+        matInput
+        placeholder="Địa chỉ"
+        [(ngModel)]="data.diachi"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy" [style.width.px]="300">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Email"
+        [(ngModel)]="data.email"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    [mat-dialog-close]="data"
+    class="btn btn-primary"
+    cdkFocusInitial
+  >
+    Tạo
+  </button>
+  <button mat-button (click)="onNoClick()">Không tạo nữa</button>
+</div>

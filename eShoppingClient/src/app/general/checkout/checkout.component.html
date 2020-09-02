@@ -24,62 +24,86 @@
         </h6>
       </div>
     </div>
-    <form [formGroup]="submitForm" (ngSubmit)="onFormSubmit()" class="checkout__form">
+    <form
+      [formGroup]="submitForm"
+      (ngSubmit)="onFormSubmit()"
+      class="checkout__form"
+    >
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
           <h5>Thông tin người nhận</h5>
           <div class="row">
             <div class="col-lg-12">
+              <div>
+                <p>Người nhận</p>
+                <ng-select
+                  [items]="recipientsList"
+                  bindLabel="hoten"
+                  bindValue="id"
+                  placeholder="Chọn người nhận"
+                  formControlName="nguoinhan"
+                >
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-lg-12">
               <div class="checkout__form__input">
                 <p>Tên đầy đủ <span>*</span></p>
-                <input type="text" formControlName="hoten"/>
+                <input type="text" formControlName="hoten" />
               </div>
             </div>
             <div class="col-lg-12">
               <div class="checkout__form__input">
                 <p>Địa chỉ <span>*</span></p>
-                <input type="text" placeholder="Địa chỉ đầy đủ" formControlName="diachi"/>
+                <input
+                  type="text"
+                  placeholder="Địa chỉ đầy đủ"
+                  formControlName="diachi"
+                />
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="checkout__form__input">
                 <p>Số điện thoại <span>*</span></p>
-                <input type="text" formControlName="SDT"/>
+                <input type="text" formControlName="SDT" />
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="checkout__order">
-            <h5>Your order</h5>
+            <h5>Thanh toán</h5>
             <div class="checkout__order__product">
               <ul>
                 <li>
-                  <span class="top__text">Product</span>
-                  <span class="top__text__right">Total</span>
+                  <span class="top__text">Sản phẩm</span>
+                  <span class="top__text__right">Tổng</span>
                 </li>
-                <li>01. Chain buck bag <span>$ 300.0</span></li>
-                <li>
-                  02. Zip-pockets pebbled<br />
-                  tote briefcase <span>$ 170.0</span>
+                <li *ngFor="let p of giohang; let i = index">
+                  {{ i + 1 }}. {{ p.ten }}
+                  <span>{{ p.giabanhienhanh }} VND</span>
                 </li>
-                <li>03. Black jean <span>$ 170.0</span></li>
-                <li>04. Cotton shirt <span>$ 110.0</span></li>
               </ul>
             </div>
             <div class="checkout__order__total">
               <ul>
-                <li>Subtotal <span>$ 750.0</span></li>
-                <li>Total <span>$ 750.0</span></li>
+                <li>
+                  Tổng cộng <span>{{ total }} VND</span>
+                </li>
+                <!-- <li>Total <span>$ 750.0</span></li> -->
               </ul>
             </div>
             <div class="checkout__order__widget">
               <label for="o-acc">
-                Create an acount?
-                <input type="checkbox" id="o-acc" />
+                Thêm người nhận?
+                <input
+                  type="checkbox"
+                  formControlName="isCreateRecipient"
+                  id="o-acc"
+                />
                 <span class="checkmark"></span>
               </label>
-              <p>
+              <!-- <p>
                 Create am acount by entering the information below. If you are a
                 returing customer login at the top of the page.
               </p>
@@ -92,9 +116,11 @@
                 PayPal
                 <input type="checkbox" id="paypal" />
                 <span class="checkmark"></span>
-              </label>
+              </label> -->
             </div>
-            <button type="submit" class="site-btn">Place oder</button>
+            <button type="button" (click)="onSubmit()" class="site-btn">
+              Đặt hàng
+            </button>
           </div>
         </div>
       </div>

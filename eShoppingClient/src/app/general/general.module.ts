@@ -4,8 +4,8 @@ import { GeneralRoutingModule } from "./general-routing.module";
 import { ContactComponent } from "./contact/contact.component";
 import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
-import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     GeneralRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
   ],
   declarations: [ContactComponent, ShoppingCartComponent, CheckoutComponent],
 })

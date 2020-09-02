@@ -29,12 +29,12 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody *ngIf="products">
+                            <tr *ngFor="let p of products; let i = index">
                                 <td class="cart__product__item">
-                                    <img src="img/shop-cart/cp-1.jpg" alt="">
+                                    <!-- <img src="img/shop-cart/cp-1.jpg" alt=""> -->
                                     <div class="cart__product__item__title">
-                                        <h6>Chain bucket bag</h6>
+                                        <h6>{{ p.ten }}</h6>
                                         <div class="rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -44,83 +44,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="cart__price">$ 150.0</td>
-                                <td class="cart__quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+                                <td class="cart__price">{{ p.giabanhienhanh }} VND</td>
+                                <td>
+                                    <div style="padding-left: 40px">
+                                        <!-- <input type="text" value="1"> -->
+                                        1
                                     </div>
                                 </td>
-                                <td class="cart__total">$ 300.0</td>
-                                <td class="cart__close"><span class="icon_close"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="cart__product__item">
-                                    <img src="img/shop-cart/cp-2.jpg" alt="">
-                                    <div class="cart__product__item__title">
-                                        <h6>Zip-pockets pebbled tote briefcase</h6>
-                                        <div class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 170.0</td>
-                                <td class="cart__quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </td>
-                                <td class="cart__total">$ 170.0</td>
-                                <td class="cart__close"><span class="icon_close"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="cart__product__item">
-                                    <img src="img/shop-cart/cp-3.jpg" alt="">
-                                    <div class="cart__product__item__title">
-                                        <h6>Black jean</h6>
-                                        <div class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 85.0</td>
-                                <td class="cart__quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </td>
-                                <td class="cart__total">$ 170.0</td>
-                                <td class="cart__close"><span class="icon_close"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="cart__product__item">
-                                    <img src="img/shop-cart/cp-4.jpg" alt="">
-                                    <div class="cart__product__item__title">
-                                        <h6>Cotton Shirt</h6>
-                                        <div class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">$ 55.0</td>
-                                <td class="cart__quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </td>
-                                <td class="cart__total">$ 110.0</td>
-                                <td class="cart__close"><span class="icon_close"></span></td>
+                                <td class="cart__total">{{ p.giabanhienhanh }} VND</td>
+                                <td class="cart__close"><span class="icon_close" (click)="deleteProductFromCart(p.id)"></span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -130,33 +62,33 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn">
-                    <a (click)="backToShopping()">Continue Shopping</a>
+                    <a (click)="backToShopping()">Tiếp tục mua sắm</a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn update__btn">
-                    <a href="#"><span class="icon_loading"></span> Update cart</a>
+                    <a (click)="getProducts()"><span class="icon_loading"></span> Cập nhật giỏ hàng</a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <div class="discount__content">
+                <!-- <div class="discount__content">
                     <h6>Discount codes</h6>
                     <form action="#">
                         <input type="text" placeholder="Enter your coupon code">
                         <button type="submit" class="site-btn">Apply</button>
                     </form>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-4 offset-lg-2">
                 <div class="cart__total__procced">
-                    <h6>Cart total</h6>
+                    <h6>Tổng đơn hàng</h6>
                     <ul>
-                        <li>Subtotal <span>$ 750.0</span></li>
-                        <li>Total <span>$ 750.0</span></li>
+                        <!-- <li>Subtotal <span>$ 750.0</span></li> -->
+                        <li>Tổng <span>{{ total }} VND</span></li>
                     </ul>
-                    <a routerLink="/general/checkout" class="primary-btn">Proceed to checkout</a>
+                    <a routerLink="/general/checkout" class="primary-btn">Thanh toán</a>
                 </div>
             </div>
         </div>

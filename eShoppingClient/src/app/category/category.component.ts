@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { GeneralService } from "../services/general.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { Location } from "@angular/common";
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from "@angular/router";
+import { UserService } from "../services/user.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-category",
@@ -13,12 +15,15 @@ export class CategoryComponent implements OnInit {
   id = -1;
   products = [];
   category = "";
+  idgiohang = -1;
   constructor(
+    private userService: UserService,
     private generalService: GeneralService,
     private authenticationService: AuthenticationService,
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ms: ToastrService
   ) {
     this.id = this.generalService.getId();
     if (this.id > 0) {
@@ -30,6 +35,13 @@ export class CategoryComponent implements OnInit {
     } else {
       this.location.back();
     }
+    this.userService.postGetCartId().subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.idgiohang = res.data.id;
+      } else {
+      }
+    });
   }
 
   ngOnInit() {
@@ -40,7 +52,11 @@ export class CategoryComponent implements OnInit {
     this.router.navigate([`/category/${this.category}/${id}`]);
   }
 
-  addProductToCart(id) {
-    
+  addProductToCart(idsp) {
+    this.userService.postAddProductToCart(idsp, this.idgiohang).subscribe(res => {
+      if (res) {
+        this.ms.success("Thêm sản phẩm thành công");
+      }
+    })
   }
 }

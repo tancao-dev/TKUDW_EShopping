@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GeneralService } from "src/app/services/general.service";
 import { Location } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-product-details",
@@ -14,11 +16,14 @@ export class ProductDetailsComponent implements OnInit {
   category = "";
   listCategory = [];
   instock = true;
+  idgiohang = -1;
   constructor(
     private generalService: GeneralService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private ms: ToastrService
   ) {
     this.generalService.getAllCategory().subscribe(res => {
       this.listCategory = res;
@@ -34,6 +39,25 @@ export class ProductDetailsComponent implements OnInit {
         this.instock = (this.product.tinhtrang > 0) ? true : false;
       }
     });
+    this.getCartId();
+  }
+
+  getCartId() {
+    this.userService.postGetCartId().subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.idgiohang = res.data.id;
+      } else {
+      }
+    });
+  }
+
+  addProductToCart() {
+    this.userService.postAddProductToCart(this.id, this.idgiohang).subscribe(res => {
+      if (res) {
+        this.ms.success("Thêm sản phẩm thành công");
+      }
+    })
   }
 
   goBack(){

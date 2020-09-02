@@ -3,6 +3,11 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { first } from "rxjs/operators";
+import { MatDialog } from "@angular/material";
+import { ModalComponent } from "../helpers/modal/modal.component";
+import { UserInfo } from "../models/userInfo.model";
+import { ToastrService } from "ngx-toastr";
+import { GeneralService } from "../services/general.service";
 
 @Component({
   selector: "app-login",
@@ -15,12 +20,15 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = "";
-
+  user: any = {};
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public dialog: MatDialog,
+    public ms: ToastrService,
+    private generalService: GeneralService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -64,5 +72,59 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      autoFocus: false,
+      panelClass: "trend-dialog",
+      width: "360px",
+      height: "auto",
+      data: {
+        tendangnhap: this.user.tendangnhap,
+        matkhau: this.user.matkhau,
+        hoten: this.user.hoten,
+        ngaysinh: this.user.ngaysinh,
+        CMND: this.user.CMND,
+        diachi: this.user.diachi,
+        email: this.user.email,
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        let t = 0;
+        Object.values(res).forEach((e) => {
+          if (e == null) {
+            t = 1;
+            return;
+          }
+        });
+        if (t === 0) {
+          this.user = res;
+          this.user.ngaysinh = new Date(this.user.ngaysinh);
+          this.generalService.signup(this.user).subscribe((res) => {
+            if (res) {
+              this.ms.success("Tạo tài khoản thành công");
+              this.authenticationService
+                .login(this.user.tendangnhap, this.user.matkhau)
+                .pipe(first())
+                .subscribe(
+                  (data) => {
+                    this.loading = false;
+                    this.router.navigate([""]);
+                  },
+                  (error) => {
+                    this.error = error;
+                    this.loading = false;
+                  }
+                );
+            }
+          });
+        } else {
+          this.ms.error("Vui lòng điền đủ thông tin");
+          return;
+        }
+      }
+    });
   }
 }

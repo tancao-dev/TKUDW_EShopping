@@ -1,3 +1,5 @@
 @import '~ngx-toastr/toastr';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 /* You can add global styles to this file, and also import other style files */
 a { cursor: pointer }

@@ -19,7 +19,11 @@ export class GeneralService {
   getProductsByCategory(id) {
     return this.http.get<any>(`${this.url}/${id}/products`);
   }
-
+  signup(body) {
+    body.tinhtrang = 1;
+    body.vaitro = 0;
+    return this.http.post<any>(`${this.url}/signup`, body);
+  }
   getProductDetailsById(id) {
     return this.http.get<any>(`${this.url}/product/${id}`);
   }

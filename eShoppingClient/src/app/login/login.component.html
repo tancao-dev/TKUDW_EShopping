@@ -33,15 +33,26 @@
             [ngClass]="{ 'is-invalid': submitted && f.matkhau.errors }"
           />
           <div *ngIf="submitted && f.matkhau.errors" class="invalid-feedback">
-            <div *ngIf="f.matkhau.errors.required">Mật khẩu là trường bắt buộc</div>
+            <div *ngIf="f.matkhau.errors.required">
+              Mật khẩu là trường bắt buộc
+            </div>
           </div>
         </div>
-        <button [disabled]="loading" class="btn btn-primary">
+        <button mat-raised-button [disabled]="loading" class="btn btn-primary">
           <span
             *ngIf="loading"
             class="spinner-border spinner-border-sm mr-1"
           ></span>
           Đăng nhập
+        </button>
+        <button
+          style="margin-left: 20px"
+          class="btn btn-default"
+          type="button"
+          mat-raised-button
+          (click)="openDialog()"
+        >
+          Đăng ký
         </button>
         <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
             {{ error }}
